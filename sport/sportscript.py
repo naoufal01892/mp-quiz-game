@@ -1,7 +1,19 @@
-import csv
-import random
+import sys
 import os
 
+
+
+additional_paths = ["./sound"]
+
+
+for path in additional_paths:
+    full_path = os.path.abspath(path)
+    sys.path.append(full_path)
+
+
+import csv
+import random
+import sound
 script_dir = os.path.dirname(__file__)
 csv_file_path = os.path.join(script_dir, 'sport.csv')
 
@@ -49,8 +61,12 @@ def run_quiz():
 
         user_choice = get_user_choice()
         if user_choice == correct_option_index:
+            validation_player = sound.ValidationPlayer()
+            validation_player.play()
             print("Correct!")
         else:
+            error_player = sound.ErrorPlayer()
+            error_player.play()
             print(f"Wrong! The correct answer is option {correct_option_index}: {correct_answer}.")
 
 if __name__ == "__main__":
