@@ -1,7 +1,9 @@
 import csv
 import random
+import os
 
-csv_file_path = 'sport\sport.csv'
+script_dir = os.path.dirname(__file__)
+csv_file_path = os.path.join(script_dir, 'sport.csv')
 
 def get_random_rows(file_path, num_rows):
     with open(file_path, 'r') as csv_file:

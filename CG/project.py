@@ -1,7 +1,9 @@
 import csv
 import random
+import os
 
-csv_file_path = 'math\math.csv'
+script_dir = os.path.dirname(__file__)  # Get the directory of the current script
+csv_file_path = os.path.join(script_dir, 'Book1.csv')
 
 def get_random_rows(file_path, num_rows):
     with open(file_path, 'r') as csv_file:

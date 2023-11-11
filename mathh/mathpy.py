@@ -1,7 +1,9 @@
+import os
 import csv
 import random
 
-csv_file_path = 'Book1.csv'
+script_dir = os.path.dirname(__file__)
+csv_file_path = os.path.join(script_dir, 'math.csv')
 
 def get_random_rows(file_path, num_rows):
     with open(file_path, 'r') as csv_file:
@@ -11,6 +13,7 @@ def get_random_rows(file_path, num_rows):
         start_index = max(0, random_line_index - num_rows + 1)
         random_rows = csv_data[start_index:random_line_index + 1]
         return random_rows
+
 
 def display_question_and_options(options):
     print("Question:")
