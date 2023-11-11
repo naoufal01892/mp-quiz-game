@@ -1,30 +1,42 @@
-# importing required module
-from playsound import playsound
-from tkinter import*
+import os
+import pygame
 
-root = Tk() 
-root.title('GeeksforGeeks sound player') #giving the title for our window
-root.geometry("500x400")
+class SoundPlayer:
+    def __init__(self, sound_file='path/to/.mp3'):
+        pygame.mixer.init()
+        
+        # Get the absolute path to the sound file
+        sound_file_path = os.path.abspath(sound_file)
+        
+        if not os.path.exists(sound_file_path):
+            raise FileNotFoundError(f"File not found: {sound_file_path}")
+        
+        pygame.mixer.music.load(sound_file_path)
 
-# making function 
-def play():
-	playsound('1.mp3')
- 
-def validation():
-    playsound()
-    
-def error():
-    playsound()
+    def play(self):
+        pygame.mixer.music.play()
 
-title=Label(root,text="GeeksforGeeks",bd=9,relief=GROOVE,
-			font=("times new roman",50,"bold"),bg="white",fg="green") 
-title.pack(side=TOP,fill=X) 
+class ValidationPlayer(SoundPlayer):
+    def __init__(self):
+        super().__init__('.\sound\v.mp3')
 
+class ErrorPlayer(SoundPlayer):
+    def __init__(self):
+        super().__init__('path/to/e.mp3')
 
-play_button = Button(root, text="Play Song", font=("Helvetica", 32),
-					relief=GROOVE, command=play)
-play_button.pack(pady=20)
+def main():
+    # Example usage
+    player = SoundPlayer()
+    player.play()
 
-info=Label(root,text="Click on the button above to play song ",
-		font=("times new roman",10,"bold")).pack(pady=20)
-root.mainloop()
+    validation_player = ValidationPlayer()
+    validation_player.play()
+
+    error_player = ErrorPlayer()
+    error_player.play()
+
+    # Keep the program running to allow audio to play
+    input("Press Enter to exit...")
+
+if __name__ == "__main__":
+    main()
