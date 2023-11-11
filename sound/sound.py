@@ -9,6 +9,12 @@ root.geometry("500x400")
 # making function 
 def play():
 	playsound('1.mp3')
+ 
+def validation():
+    playsound()
+    
+def error():
+    playsound()
 
 title=Label(root,text="GeeksforGeeks",bd=9,relief=GROOVE,
 			font=("times new roman",50,"bold"),bg="white",fg="green") 
